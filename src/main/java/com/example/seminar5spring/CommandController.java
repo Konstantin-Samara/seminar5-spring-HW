@@ -8,10 +8,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/commands")
 public class CommandController {
-    private final CommandService service;
+    private final My_Service service;
 
     @Autowired
-    public CommandController(CommandService service1) {
+    public CommandController(My_Service service1) {
         service = service1;
     }
 
@@ -35,14 +35,19 @@ public class CommandController {
     }
 
     @PutMapping("/{id}")
-    public String changeStatus(@PathVariable Long id) {
-        return service.changeStatus(id).toString();
+    public String changeCommandStatus(@PathVariable Long id) {
+        return service.changeCommandStatus(id).toString();
     }
 
     @DeleteMapping("/{id}")
     public void deleteCommand(@PathVariable Long id) {
         service.deleteCommand(id);
     }
+    @PutMapping("/{id}/change/{id1}")
+    public String addPerformer(@PathVariable Long id, @PathVariable Long id1) {
+        return service.changeCommandPerformer(id,id1).toString();
+    }
+
 
 
 }

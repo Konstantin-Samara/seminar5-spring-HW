@@ -2,9 +2,10 @@ package com.example.seminar5spring;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+
 @Entity
 public class Command {
-
 
     enum Status {Running, Completed, Disabled}
     @Id
@@ -19,6 +20,8 @@ public class Command {
 
     @Column(nullable = true)
     private String runningDate = "no Date";
+    @Column(nullable = true)
+    private ArrayList<Long> performersId = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -51,10 +54,16 @@ public class Command {
     public void setRunningDate(String runningDate) {
         this.runningDate = runningDate;
     }
+    public ArrayList<Long> getPerformersId() {
+        return performersId;
+    }
+    public void setPerformersId(ArrayList<Long> performersId) {
+        this.performersId = performersId;
+    }
 
     @Override
     public String toString(){
-        return this.id+" "+this.description+" "+this.status+" "+this.runningDate;
+        return this.id+" "+this.description+" "+this.status+" "+this.runningDate+" \n    "+this.performersId;
     }
 
 }
